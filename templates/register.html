@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Steamers: Game Recommender System Signup</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style type="text/css">
+		body {
+			background-image: url('https://i.redd.it/eyajau5oya511.png');
+			background-size: cover;
+			background-position: center;
+		}
+		.container {
+			margin-top: 100px;
+			background-color: rgba(255, 255, 255, 0.8);
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px #888;
+			max-width: 500px; /* added max-width property */
+			margin-left: auto; /* center the container horizontally */
+			margin-right: auto;
+		}
+		h1 {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+        <h1>Steamers | Register</h1>
+		<h2></h2>
+		<form action="{{ url_for('register') }}" method="post">
+			<div class="form-group">
+				<label for="username">Username:</label>
+				<input type="text" class="form-control" name="username" placeholder="Username" id="username" required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input type="email" class="form-control" name="email" placeholder="Email" id="email" required>
+			</div>
+			<input type="submit" class="btn btn-success" value="Register">
+			<a class="btn btn-primary" href="{{ url_for('home_login') }}" style="float:right;">Login</a>
+		</form>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

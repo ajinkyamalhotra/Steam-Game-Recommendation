@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+
+{% block title %}Recommendation{% endblock %}
+
+{% block content %}
+<style>
+    body {
+    background-image: url("https://wallpapers.com/images/featured/nepi2tnxp6g0mvz9.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .card {
+    background-color: rgba(255, 255, 255, 0.844);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+<div class="msg">{{ msg }}</div>
+<br />
+<div class="card">
+    <h3 class="card-header">What similar games for you looking for?</h3>
+    <div class="card-body">
+        <form method='POST' action={{url_for('display_recommendations')}}>
+            <div class="mb-3">
+                <label for="gamename_from_dropdown" class="form-label">Dropdown Options:</label>
+                <select class="custom-select" name="gamename_from_dropdown" id="gamename_from_dropdown">
+                    <option selected>{{default_closest_name}}</option>
+                    {% for name in closest_names %}
+                    <option value="{{name}}">{{name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="how_many" class="form-label">How Many Games</label>
+                <output class="badge bg-primary" style="float: right;">10</output>
+                <input type="range" class="form-range" name="how_many" id="how_many" min="1" max="20" value="10"
+                    oninput="this.previousElementSibling.value = this.value">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-check-label">Sort Options:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sort_option" id="inlineRadio1" value="Year">
+                    <label class="form-check-label" for="inlineRadio1">Year</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sort_option" id="inlineRadio2" value="Score">
+                    <label class="form-check-label" for="inlineRadio2">Score</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sort_option" id="inlineRadio3"
+                        value="Weighted Score" checked>
+                    <label class="form-check-label" for="inlineRadio3">Weighted Score</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sort_option" id="inlineRadio4"
+                        value="Total Ratings">
+                    <label class="form-check-label" for="inlineRadio4">Total Ratings</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="min_year" class="form-label">Minimum Year</label>
+                <output class="badge bg-primary" style="float: right;">1997</output>
+                <input type="range" class="form-range" name="min_year" id="min_year" min="1997" max="2019" value="1997"
+                    oninput="this.previousElementSibling.value = this.value">
+            </div>
+            <div class="mb-3">
+                <label class="form-check-label">Platform:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="platform" id="inlineRadio5" value="windows"
+                        checked>
+                    <label class="form-check-label" for="inlineRadio5">windows</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="platform" id="inlineRadio6" value="xbox">
+                    <label class="form-check-label" for="inlineRadio6">xbox</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="platform" id="inlineRadio7" value="playstation">
+                    <label class="form-check-label" for="inlineRadio7">playstation</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="platform" id="inlineRadio8" value="linux">
+                    <label class="form-check-label" for="inlineRadio8">linux</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="platform" id="inlineRadio9" value="mac">
+                    <label class="form-check-label" for="inlineRadio9">mac</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="min_score" class="form-label">Minimum Score</label>
+                <output class="badge bg-primary" style="float: right;">0.0</output>
+                <input type="range" class="form-range" name="min_score" id="min_score" step="0.1" min="0.0" max="10"
+                    value="0.0" oninput="this.previousElementSibling.value = this.value">
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

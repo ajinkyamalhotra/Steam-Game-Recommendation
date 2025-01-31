@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+  body {
+  background-image: url("https://wallpapers.com/images/featured/nepi2tnxp6g0mvz9.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+</style>
+<style>
+  .card {
+    background-color: rgba(255, 255, 255, 0.844);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .btn-primary {
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .msg {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  h2 {
+    color: rgb(0, 0, 0);
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  p {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+</style>
+
+<div class="card">
+  <h2>Welcome, {{ username }}!</h2>
+  <div class="msg">{{ msg }}</div>
+  <form method='POST' action={{url_for('generate_recommendations')}}>
+    <div class="mb-3">
+      <label for="gamename" class="form-label" style="font-size: 25px; font-weight: bold;">Which game would you like to find similar games for?</label>
+      <input type="text" class="form-control" placeholder="Enter game name" aria-label="Game Name" name="gamename" id="gamename" required>
+    </div>
+    <div style="text-align: center;">
+      <button type="submit" class="btn btn-primary">Find Similar Games</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

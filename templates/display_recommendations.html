@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}Display Recommendation{% endblock %}
+
+{% block content %}
+<style>
+  body {
+  background-image: url("https://wallpapers.com/images/featured/nepi2tnxp6g0mvz9.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+h2 {
+    color: rgb(237, 235, 244);
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+</style>
+<h2>Recommendations</h2>
+<div class="msg">{{ msg }}</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {%for key, game in recommended_games.items()%}
+  <div class="col">
+    <div class="card">
+      <img src="{{game['Header Image']}}" class="card-img-top"
+        alt="Hollywood Sign on The Hill" />
+      <div class="card-body">
+        <h5 class="card-title">{{game['Game Title']}}</h5>
+        <p class="card-text">
+          {{game['Description']}}
+        </p>
+        <hr/>
+        <a type="button" class="btn btn-success" style='float:left;' href="{{game['Url']}}" target="_blank">Buy Game</a>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+<br/>
+{% endblock %}
